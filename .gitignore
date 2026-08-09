@@ -1,0 +1,31 @@
+# 秘密情報・環境変数
+.env
+.env.local
+*.pem
+
+# Python 仮想環境
+.venv/
+venv/
+ENV/
+env/
+
+# Python キャッシュ・ビルド生成物
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.python-version
+
+# IDE・エディタ設定
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS 一時ファイル
+.DS_Store
+Thumbs.db
+
+# テスト・ログ・スクラッチ
+scratch/
+*.log
