@@ -25,20 +25,21 @@ Google Keep のメモを取得し、Gemini API で要約・タグ付けを行っ
 
 ```mermaid
 flowchart TD
-    subgraph Google Keep
-        A[未処理ノートの抽出]
+    subgraph Keep["Google Keep"]
+        A["未処理ノートの抽出"]
     end
 
-    subgraph パイプライン
-        B[並列 Web スクレイピング]
-        C[Notion 既存タグの取得]
-        D[Gemini API による解析]
+    subgraph Pipeline["パイプライン"]
+        B["並列 Web スクレイピング"]
+        C["Notion 既存タグの取得"]
+        D["Gemini API による解析"]
     end
 
-    subgraph 同期・保存
-        E[Notion データベースへの保存]
-        F[Google Keep へタイトル・タグを反映]
-        G[5日経過ノートの自動アーカイブ]
+    subgraph Sync["同期・保存"]
+        E["Notion データベースへの保存"]
+        F["Google Keep へタイトル・タグを反映"]
+        G["5日経過ノートの自動アーカイブ"]
+        H["keep.sync による一括反映"]
     end
 
     A --> B
@@ -47,7 +48,7 @@ flowchart TD
     D --> E
     D --> F
     F --> G
-    G --> H[keep.sync による一括反映]
+    G --> H
 ```
 
 ---
