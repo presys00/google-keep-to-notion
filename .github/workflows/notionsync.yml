@@ -7,10 +7,15 @@ on:
   workflow_dispatch:
     # GitHub Web UI からの手動実行トリガー
 
+# keepalive-workflow がリポジトリに自動停止回避用のダミーコミットを行えるよう権限を付与
+permissions:
+  contents: write
+
 jobs:
   sync:
     name: Sync Keep to Notion
-    runs-on: ubuntu-latest
+    # ubuntu-latest移行の警告を消すため、バージョンを固定
+    runs-on: ubuntu-24.04 
 
     steps:
       - name: リポジトリのチェックアウト
@@ -36,3 +41,6 @@ jobs:
           NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
         run: |
           python main.py
+
+      - name: 60日間無操作による自動停止を回避 (Keepalive)
+        uses: gautamkrishnar/keepalive-workflow@v2
